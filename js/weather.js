@@ -10,7 +10,7 @@ const imgWind = './img/weatwindy.webp';
 const imgRainBg = './img/giphy.webp';
 const API_KEY = 'bb3c2096c199260e300c0a53f3ed11dc'
 
- function Weather(pressure, temperatureink, humidity, sealevel, sunrise, sunset, timeinhours, timeinmins, timeinsec, ampm, mainweather, description) {
+function Weather(pressure, temperatureink, humidity, sealevel, sunrise, sunset, timeinhours, timeinmins, timeinsec, ampm, mainweather, description) {
     this.pressure = pressure;
     this.temperatureink = temperatureink;
     this.humidity = humidity;
@@ -36,13 +36,22 @@ const API_KEY = 'bb3c2096c199260e300c0a53f3ed11dc'
 }
 
 
+
 function trimed(text) {
     return text.trim();
 }
 function caseSmall(text) {
     return text.toLowerCase();
 }
- function waiting(city) {
+
+function loader() {
+    setTimeout(() => {
+        $('.load').slideUp()
+        $('main').slideDown()
+    }, 3000)
+}
+
+function waiting(city) {
     let promise = new Promise(function (resolve, reject) {
         let request = new XMLHttpRequest();
         const url = `http://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${API_KEY}`;
@@ -201,6 +210,7 @@ function ActivateTimer(time) {
 }
 
 $(document).ready(function () {
+    loader()
     $('#location').on("input", function () {
         let location = $('#location').val();
         waiting(trimed(location));
