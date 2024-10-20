@@ -388,7 +388,9 @@ img {
 .hide {
     display: none;
 }
-
+main{
+    display: none;
+}
 .error {
     color: rgb(248, 6, 6);
     font-weight: 500;
